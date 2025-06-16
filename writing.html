@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>Diminutives Practice</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    h1, h2 {
+      color: #333;
+    }
+    .exercise {
+      margin-top: 20px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 15px;
+      font-size: 16px;
+    }
+    #feedback {
+      margin-top: 30px;
+      font-weight: bold;
+    }
+    textarea {
+      width: 100%;
+      height: 150px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>📝 Diminutives Writing Practice</h1>
+
+  <div class="exercise">
+    <p><strong>Instructions:</strong><br>
+    Write a paragraph in Portuguese using as many of the following <strong>diminutives</strong> as you can. Try to use them correctly in context.</p>
+
+    <p><strong>Word List:</strong><br>
+    livrinho, mulherzinha, cãozinho, casinha, probleminha, comidinha,<br>
+    mãozinha, beijinho, mãezinha, historinha</p>
+
+    <textarea id="writingInput" placeholder="Escreva seu parágrafo aqui..."></textarea>
+    <button type="button" onclick="checkWriting()">Check My Writing</button>
+    <div id="feedback"></div>
+  </div>
+
+  <script>
+    function checkWriting() {
+      const input = document.getElementById('writingInput').value.toLowerCase();
+      const words = ["livrinho", "mulherzinha", "cãozinho", "casinha", "probleminha", "comidinha", "mãozinha", "beijinho", "mãezinha", "historinha"];
+      let count = 0;
+      let usedWords = [];
+      words.forEach(word => {
+        if (input.includes(word)) {
+          count++;
+          usedWords.push(word);
+        }
+      });
+      let feedbackText = count >= 5
+        ? `✅ Great! You used ${count} diminutives: ${usedWords.join(', ')}.`
+        : `🔍 You used ${count} diminutives: ${usedWords.join(', ')}. Try to include at least 5.`;
+      document.getElementById("feedback").innerText = feedbackText;
+    }
+  </script>
+</body>
+</html>

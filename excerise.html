@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Use of the Diminutive</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: #f0f0f0;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 60px;
+    }
+
+    .link-bar {
+      display: flex;
+      justify-content: space-around;
+      background-color: #333;
+      padding: 10px 0;
+      width: 100%;
+      flex-wrap: wrap;
+    }
+
+    .link-button {
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      font-weight: bold;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    .link-button:hover {
+      background-color: #555;
+    }
+
+    .container {
+      max-width: 800px;
+      padding: 20px;
+      width: 100%;
+    }
+
+    .question {
+      margin-bottom: 20px;
+    }
+
+    .question p {
+      margin: 10px 0;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+
+    #nextSectionBtn {
+      display: none;
+      margin-top: 20px;
+      background-color: #2ecc71;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #nextSectionBtn:hover {
+      background-color: #27ae60;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="link-bar">
+    <a href="index.html" class="link-button">Home</a>
+    <a href="flipcards.html" class="link-button">Section 1 New Words</a>
+    <a href="vocabgame.html" class="link-button">Section 2 Test</a>
+    <a href="lesson.html" class="link-button">Section 3 Lesson</a>
+    <a href="excerise.html" class="link-button">Section 4 Exercise</a>
+    <a href="excerise2.html" class="link-button">Section 5 Exercise 2</a>
+    <a href="resources.html" class="link-button">Section 6 Further Exercises</a>
+  </div>
+
+  <div class="container">
+    <h1>Diminutive Meaning Quiz</h1>
+    <p><strong>Instructions:</strong> Read each sentence and choose the correct meaning of the diminutive.</p>
+
+    <form id="quizForm">
+      <!-- Questions go here -->
+      <div class="question">
+        <p><strong>1.</strong> A vovó preparou uma comidinha deliciosa para o almoço.</p>
+        <label><input type="radio" name="q1" value="A"> 🅐 Affection</label><br>
+        <label><input type="radio" name="q1" value="B"> 🅑 Small size</label><br>
+        <label><input type="radio" name="q1" value="C"> 🅒 Softening</label><br>
+        <label><input type="radio" name="q1" value="D"> 🅓 Irony/contempt</label>
+      </div>
+
+      <div class="question">
+        <p><strong>2.</strong> Ele tem um cãozinho que não larga do pé dele.</p>
+        <label><input type="radio" name="q2" value="A"> 🅐 Affection</label><br>
+        <label><input type="radio" name="q2" value="B"> 🅑 Small size</label><br>
+        <label><input type="radio" name="q2" value="C"> 🅒 Softening</label><br>
+        <label><input type="radio" name="q2" value="D"> 🅓 Irony/contempt</label>
+      </div>
+
+      <div class="question">
+        <p><strong>3.</strong> Ah, lá vem ela com essa historinha de novo…</p>
+        <label><input type="radio" name="q3" value="A"> 🅐 Affection</label><br>
+        <label><input type="radio" name="q3" value="B"> 🅑 Small size</label><br>
+        <label><input type="radio" name="q3" value="C"> 🅒 Softening</label><br>
+        <label><input type="radio" name="q3" value="D"> 🅓 Irony/contempt</label>
+      </div>
+
+      <div class="question">
+        <p><strong>4.</strong> Eu só preciso de uma mãozinha para carregar as malas.</p>
+        <label><input type="radio" name="q4" value="A"> 🅐 Affection</label><br>
+        <label><input type="radio" name="q4" value="B"> 🅑 Small size</label><br>
+        <label><input type="radio" name="q4" value="C"> 🅒 Softening</label><br>
+        <label><input type="radio" name="q4" value="D"> 🅓 Irony/contempt</label>
+      </div>
+
+      <div class="question">
+        <p><strong>5.</strong> Vamos contar uma historinha para as crianças dormirem?</p>
+        <label><input type="radio" name="q5" value="A"> 🅐 Affection</label><br>
+        <label><input type="radio" name="q5" value="B"> 🅑 Small size</label><br>
+        <label><input type="radio" name="q5" value="C"> 🅒 Softening</label><br>
+        <label><input type="radio" name="q5" value="D"> 🅓 Irony/contempt</label>
+      </div>
+
+      <div class="question">
+        <p><strong>6.</strong> Me dá um beijinho antes de sair?</p>
+        <label><input type="radio" name="q6" value="A"> 🅐 Affection</label><br>
+        <label><input type="radio" name="q6" value="B"> 🅑 Small size</label><br>
+        <label><input type="radio" name="q6" value="C"> 🅒 Softening</label><br>
+        <label><input type="radio" name="q6" value="D"> 🅓 Irony/contempt</label>
+      </div>
+
+      <div class="question">
+        <p><strong>7.</strong> Ele comprou uma casinha no interior para passar os fins de semana.</p>
+        <label><input type="radio" name="q7" value="A"> 🅐 Affection</label><br>
+        <label><input type="radio" name="q7" value="B"> 🅑 Small size</label><br>
+        <label><input type="radio" name="q7" value="C"> 🅒 Softening</label><br>
+        <label><input type="radio" name="q7" value="D"> 🅓 Irony/contempt</label>
+      </div>
+
+      <div class="question">
+        <p><strong>8.</strong> Esse probleminha não é nada comparado ao que já enfrentamos.</p>
+        <label><input type="radio" name="q8" value="A"> 🅐 Affection</label><br>
+        <label><input type="radio" name="q8" value="B"> 🅑 Small size</label><br>
+        <label><input type="radio" name="q8" value="C"> 🅒 Softening</label><br>
+        <label><input type="radio" name="q8" value="D"> 🅓 Irony/contempt</label>
+      </div>
+
+      <div class="question">
+        <p><strong>9.</strong> A mãezinha dele está doente, coitado.</p>
+        <label><input type="radio" name="q9" value="A"> 🅐 Affection</label><br>
+        <label><input type="radio" name="q9" value="B"> 🅑 Small size</label><br>
+        <label><input type="radio" name="q9" value="C"> 🅒 Softening</label><br>
+        <label><input type="radio" name="q9" value="D"> 🅓 Irony/contempt</label>
+      </div>
+
+      <div class="question">
+        <p><strong>10.</strong> Que mulherzinha mais mandona!</p>
+        <label><input type="radio" name="q10" value="A"> 🅐 Affection</label><br>
+        <label><input type="radio" name="q10" value="B"> 🅑 Small size</label><br>
+        <label><input type="radio" name="q10" value="C"> 🅒 Softening</label><br>
+        <label><input type="radio" name="q10" value="D"> 🅓 Irony/contempt</label>
+      </div>
+
+      <button type="button" onclick="checkAnswers()">Submit Answers</button>
+    </form>
+
+    <div id="result"></div>
+    <button id="nextSectionBtn" onclick="location.href='excerise2.html'">Next Section ➡️</button>
+  </div>
+
+  <script>
+    const correctAnswers = {
+      q1: "A",
+      q2: "B",
+      q3: "D",
+      q4: "C",
+      q5: "C",
+      q6: "A",
+      q7: "B",
+      q8: "D",
+      q9: "A",
+      q10: "D"
+    };
+
+    function checkAnswers() {
+      let score = 0;
+      let total = Object.keys(correctAnswers).length;
+
+      for (let q in correctAnswers) {
+        const selected = document.querySelector(`input[name="${q}"]:checked`);
+        if (selected && selected.value === correctAnswers[q]) {
+          score++;
+        }
+      }
+
+      document.getElementById("result").innerText = `You got ${score} out of ${total} correct.`;
+
+      // Show the Next Section button after submitting
+      document.getElementById("nextSectionBtn").style.display = 'inline-block';
+    }
+  </script>
+
+</body>
+</html>

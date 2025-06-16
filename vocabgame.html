@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Use of the Diminutive</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      padding: 40px;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+    }
+
+    #game {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 40px;
+      margin-top: 30px;
+    }
+
+    .column {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .word {
+      padding: 12px 20px;
+      background-color: #3498db;
+      color: white;
+      border-radius: 8px;
+      cursor: grab;
+      user-select: none;
+    }
+
+    .drop-zone {
+      padding: 12px 20px;
+      background-color: #ecf0f1;
+      border: 2px dashed #bdc3c7;
+      border-radius: 8px;
+      min-width: 150px;
+    }
+
+    .drop-zone.hovered {
+      background-color: #dff9fb;
+    }
+
+    #score {
+      margin-top: 30px;
+      font-size: 1.2rem;
+    }
+
+    #nextRoundBtn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      background-color: #2ecc71;
+      border: none;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      display: none;
+    }
+
+    #nextSectionBtn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      background-color: #2ecc71;
+      border: none;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      display: none;
+    }
+
+    .link-bar {
+      display: flex;
+      justify-content: space-around;
+      background-color: #333;
+      padding: 10px 0;
+    }
+
+    .link-button {
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      font-weight: bold;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    .link-button:hover {
+      background-color: #555;
+    }
+  </style>
+</head>
+<body>
+
+    <div class="link-bar">
+        <a href="index.html" class="link-button">Home</a>
+        <a href="flipcards.html" class="link-button">Section 1 New Words </a>
+        <a href="vocabgame.html" class="link-button">Section 2 Test</a>
+        <a href="lesson.html" class="link-button">Section 3 Lesson</a>
+        <a href="excerise.html" class="link-button">Section 4 Excerise</a>
+        <a href="excerise2.html" class="link-button">Section 5 Excerise 2</a>
+        <a href="resources.html" class="link-button">Section 6 Further Excerises</a>
+      </div>
+
+  <br><br><br><br>
+
+  <h1>Match English Words to Portuguese</h1>
+  <p id="roundLabel">Round 1 of 2</p>
+
+  <div id="game">
+    <div class="column" id="englishWords"></div>
+    <div class="column" id="portugueseWords"></div>
+  </div>
+
+  <div id="score">Score: 0 / 10</div>
+  <button id="nextRoundBtn">Next Round</button>
+  <button id="nextSectionBtn" style="display: none;">Next Section</button>
+
+  <script>
+    const allPairs = [
+      { en: "House", pt: "Casa" },
+      { en: "Woman", pt: "Mulher" },
+      { en: "Dog", pt: "Cão" },
+      { en: "Book", pt: "Livro" },
+      { en: "Food", pt: "Comida" },
+      { en: "Problem", pt: "Problema" },
+      { en: "Hand", pt: "Mão" },
+      { en: "Kiss", pt: "Beijo" },
+      { en: "Mum", pt: "Mãe" },
+      { en: "History", pt: "História" },
+    ];
+
+    let currentRound = 1;
+    let score = 0;
+    let usedPairs = [];
+
+    const englishContainer = document.getElementById('englishWords');
+    const portugueseContainer = document.getElementById('portugueseWords');
+    const scoreEl = document.getElementById('score');
+    const nextRoundBtn = document.getElementById('nextRoundBtn');
+    const roundLabel = document.getElementById('roundLabel');
+    const nextSectionBtn = document.getElementById('nextSectionBtn');
+
+    function setupRound() {
+      englishContainer.innerHTML = '';
+      portugueseContainer.innerHTML = '';
+      nextRoundBtn.style.display = 'none';
+      nextSectionBtn.style.display = 'none';  // Hide Next Section button initially
+
+      const remainingPairs = allPairs.filter(p => !usedPairs.includes(p));
+      const roundPairs = remainingPairs.slice(0, 5);
+      usedPairs.push(...roundPairs);
+
+      // Shuffle English and Portuguese separately
+      const english = [...roundPairs].sort(() => 0.5 - Math.random());
+      const portuguese = [...roundPairs].sort(() => 0.5 - Math.random());
+
+      english.forEach(pair => {
+        const el = document.createElement('div');
+        el.className = 'word';
+        el.textContent = pair.en;
+        el.setAttribute('draggable', 'true');
+        el.dataset.word = pair.en;
+        el.addEventListener('dragstart', dragStart);
+        englishContainer.appendChild(el);
+      });
+
+      portuguese.forEach(pair => {
+        const el = document.createElement('div');
+        el.className = 'drop-zone';
+        el.textContent = pair.pt;
+        el.dataset.match = pair.en;
+        el.addEventListener('dragover', dragOver);
+        el.addEventListener('drop', drop);
+        el.addEventListener('dragleave', dragLeave);
+        el.addEventListener('dragenter', dragEnter);
+        portugueseContainer.appendChild(el);
+      });
+
+      roundLabel.textContent = `Round ${currentRound} of 2`;
+    }
+
+    function dragStart(e) {
+      e.dataTransfer.setData('text/plain', e.target.dataset.word);
+    }
+
+    function dragOver(e) {
+      e.preventDefault();
+      e.target.classList.add('hovered');
+    }
+
+    function dragLeave(e) {
+      e.target.classList.remove('hovered');
+    }
+
+    function dragEnter(e) {
+      e.preventDefault();
+    }
+
+    function drop(e) {
+      e.preventDefault();
+      const draggedWord = e.dataTransfer.getData('text/plain');
+      const correctWord = e.target.dataset.match;
+      e.target.classList.remove('hovered');
+
+      if (draggedWord === correctWord) {
+        e.target.textContent += ' ✅';
+        e.target.style.backgroundColor = '#2ecc71';
+        e.target.style.color = 'white';
+        score++;
+        scoreEl.textContent = `Score: ${score} / 10`;
+
+        // Remove dragged item
+        const draggedEl = [...document.querySelectorAll('.word')].find(el => el.dataset.word === draggedWord);
+        if (draggedEl) draggedEl.remove();
+
+        // Disable drop zone
+        e.target.removeEventListener('drop', drop);
+
+        // Check if all matched
+        if (document.querySelectorAll('.word').length === 0) {
+          if (currentRound < 2) {
+            nextRoundBtn.style.display = 'inline-block';
+          } else {
+            roundLabel.textContent = 'Game Over!';
+            nextRoundBtn.style.display = 'none';
+            nextSectionBtn.style.display = 'inline-block'; // Show Next Section button after game is over
+          }
+        }
+      } else {
+        e.target.style.backgroundColor = '#e74c3c';
+        e.target.style.color = 'white';
+        e.target.textContent += ' ❌';
+      }
+    }
+
+    nextRoundBtn.addEventListener('click', () => {
+      currentRound++;
+      setupRound();
+    });
+
+    nextSectionBtn.addEventListener('click', () => {
+      window.location.href = 'lesson.html'; // Redirect to the next section
+    });
+
+    // Start game
+    setupRound();
+  </script>
+
+</body>
+</html>

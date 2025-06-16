@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Use of the Diminutive</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: #f0f0f0;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    .slide {
+      max-width: 800px;
+      padding: 2rem;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      display: none;
+      text-align: center;
+    }
+    .slide.active {
+      display: block;
+    }
+    h1, h2 {
+      margin-bottom: 1rem;
+    }
+    .controls {
+      margin-top: 1.5rem;
+    }
+    button {
+      padding: 0.5rem 1rem;
+      margin: 0 0.5rem;
+      font-size: 1rem;
+      border: none;
+      background-color: #007bff;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      top:0px;
+    }
+    button:disabled {
+      background-color: #aaa;
+      cursor: not-allowed;
+    }
+
+    .link-bar {
+  display: flex;
+  justify-content: space-around;
+  background-color: #333;
+  padding: 10px 0;
+}
+
+.link-button {
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  font-weight: bold;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.link-button:hover {
+  background-color: #555;
+}
+
+  </style>
+</head>
+<body>
+
+    <div class="link-bar">
+        <a href="index.html" class="link-button">Home</a>
+        <a href="flipcards.html" class="link-button">Section 1 New Words </a>
+        <a href="vocabgame.html" class="link-button">Section 2 Test</a>
+        <a href="lesson.html" class="link-button">Section 3 Lesson</a>
+        <a href="excerise.html" class="link-button">Section 4 Excerise</a>
+        <a href="excerise2.html" class="link-button">Section 5 Excerise 2</a>
+        <a href="resources.html" class="link-button">Section 6 Further Excerises</a>
+      </div>
+
+  <br><br><br><br>
+
+  <div id="slides-container"></div>
+
+  <div class="controls">
+    <button id="prevBtn">Anterior</button>
+    <button id="nextBtn">Próximo</button>
+    <button id="nextSectionBtn" style="display: none;">Próxima Seção</button>
+  </div>
+
+  <script src="ser-estar.js"></script>
+</body>
+</html>
